@@ -46,13 +46,11 @@ const Disclaimer = withStyles((theme) => ({
   },
 }))(Tooltip);
 
- function showDisclaimer() {
+ function showDisclaimer(msg) {
   return  <Disclaimer
                 title={
-                  <React.Fragment>
-                  <Typography color="inherit">Tooltip with HTML</Typography>
-                  <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
-                  {"It's very engaging. Right?"}
+                  <React.Fragment>   
+                  {msg}
                   </React.Fragment>
                   }
                   >
@@ -105,7 +103,7 @@ function Registration() {
  })
 
   function processedFirst() {
-    if(dataObj.location<110000 || dataObj.location.length !=6){
+    if(dataObj.location.length > 0 && (dataObj.location<110000 || dataObj.location.length !=6)){
       setZipErr(true);
     }else{
       setZipErr(false);
@@ -118,7 +116,6 @@ function Registration() {
     ) {
       setdataObj({ ...dataObj, proceedFirst: false, proceedSecond: true });
     } else {
-      //setdataObj({...dataObj, proceedFirst:false,proceedSecond:true})
       setShowErr(true);
     }
   }
@@ -142,17 +139,17 @@ function Registration() {
     }
   }
   function progressBar(){
-    if(dataObj.proceedFirst){
+    if(dataObj.proceedFirst && !fsub){
       return setProgressPercent(25)
     }
 
-    if(dataObj.proceedSecond){
+    if(dataObj.proceedSecond && !fsub){
       return setProgressPercent(50)
     }
-    if(dataObj.proceedThird){
+    if(dataObj.proceedThird && !fsub){
       return setProgressPercent(75)
     }
-    if(dataObj.successPage){
+    if(fsub){
       return setProgressPercent(100)
     }
   }
@@ -164,13 +161,13 @@ function Registration() {
 
   function submit() {
     let emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(!emailPattern.test(dataObj.email)){
+    if(dataObj.email.length >0 && !emailPattern.test(dataObj.email)){
       setEmailErr(true);
       return false;
     }else{
       setEmailErr(false);
     }
-    if(dataObj.contact<6000000000 || dataObj.contact.length!=10){
+    if(dataObj.contact.length>0 && (dataObj.contact<6000000000 || dataObj.contact.length!=10)){
       setConErr(true);
       return false;
     }else{
@@ -286,7 +283,7 @@ function Registration() {
         <div>
           <h3 className="heading">List Your Team Information</h3>
           <div className="container eachField col-md-6">
-          {showDisclaimer()}
+          {showDisclaimer('No Special Character are allowed. Team should be like Abc10,xyz01 etc.')}
             <TextField
               onChange={handleChange}
               label="Team Name"
@@ -299,7 +296,7 @@ function Registration() {
             />
           </div>
           <div className="container eachField col-md-6">
-          {showDisclaimer()}
+          {showDisclaimer('Indian 6 digit ZIP code allowed,prefix start with 11-99.')}
             <TextField
               onChange={handleChange}
               label="Location/zip code"
@@ -313,7 +310,7 @@ function Registration() {
             {zipErr && <span className="error">Zip code is not Valid</span>}
           </div>
           <div className="container eachField col-md-6">
-          {showDisclaimer()}
+          {showDisclaimer('Maximum 12 members are allowed in a team.')}
             <TextField
               onChange={handleChange}
               label="Total Number of players including extras"
@@ -366,7 +363,7 @@ function Registration() {
                   className="ml-2 mr-2"
                   id="dateOfJoining"
                   label="Date of Joining"
-                  format="MM/dd/yyyy"
+                  format="dd/MM/yyyy"
                   fullWidth={true}
                   value={dataObj.dateOfJoining}
                   onChange={handleDateChange}
@@ -429,7 +426,7 @@ function Registration() {
 
           </div>
           <div className="container eachField col-md-6">
-          {showDisclaimer()}
+          {showDisclaimer('Email should be formated like abc@xyz.com.')}
             <TextField
               id="email"
               label="Email"
@@ -443,7 +440,7 @@ function Registration() {
             {emailErr && <span className="error">Email Format is not correct</span>}
           </div>
           <div className="container eachField col-md-6">
-          {showDisclaimer()}
+          {showDisclaimer('It contain 10 digti number without +91. number with prefix 60-99')}
             <TextField
               id="contact"
               label="Mobile Number"
