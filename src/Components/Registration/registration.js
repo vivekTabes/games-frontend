@@ -202,7 +202,7 @@ function Registration() {
   }
   function handleChange(e) {
     if (e.target.id === "teamName") {
-      const aplhaNum = /^[a-zA-Z0-9]+$/;
+      const aplhaNum = /^[a-zA-Z0-9 ]*$/;
       if (e.target.value === "" || aplhaNum.test(e.target.value)) {
         setdataObj({ ...dataObj, [e.target.id]: e.target.value });
       }
