@@ -1,0 +1,50 @@
+.card {
+    border: 4px solid #3f51b5!important;
+    margin: 5% 10% 10% 10%!important;
+    padding-bottom: 20px;
+    /* min-height: 594px; */
+  }
+  @media (max-width: 767px) {
+    .card {
+        border: 4px solid #3f51b5!important;
+        margin: 15px!important;
+        /* height: 594px; */
+      }
+  }
+  .eachField{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+  }
+  .Bttn{
+    width: 20px;
+    border-radius: 10px!important;
+    margin: 10px 0px 0px 17px!important;
+  }
+  .h1{
+    font-size: 30px;
+  }
+  .h3{
+    font-size: 20px;
+  }
+  .heading{
+    margin: 4px 12px 55px 7px!important;
+  }
+  .msg{
+    font-size: 20px;
+    color: green;
+  }
+  .captcha{
+    margin: 20px 10px 5px 80px!important;
+  }
+  .error{
+    font-size: 9px;
+    color: red;
+    text-align: left;
+  }
+ .disclaimer{
+   z-index: 100;
+   position: absolute;
+   right:20px;
+   top: 10px;
+ }
