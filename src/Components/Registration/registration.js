@@ -460,7 +460,7 @@ function Registration() {
             <div className="row justify-content-center">
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey={process.env.REACT_APP.RECAPTCHA_KEY}
+                sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
                 onChange={handleChangeCaptcha}
               />
             </div>
