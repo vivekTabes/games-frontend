@@ -64,7 +64,6 @@ function Registration() {
   useEffect(() => {
     var retrievedObject = localStorage.getItem("dataObj");
     if (retrievedObject) {
-      console.log(JSON.parse(retrievedObject))
       setdataObj(JSON.parse(retrievedObject));
     }
     if(localStorage.getItem("fsub")){
@@ -121,7 +120,6 @@ function Registration() {
   }
   const handleDateChange = (date) => {
     setdataObj({ ...dataObj, dateOfJoining: date });
-    console.log(dataObj);
   };
 
 
@@ -149,7 +147,7 @@ function Registration() {
     if(dataObj.proceedThird && !fsub){
       return setProgressPercent(75)
     }
-    if(fsub){
+    if(!dataObj.proceedThird || fsub){
       return setProgressPercent(100)
     }
   }
@@ -204,7 +202,6 @@ function Registration() {
   }
   function handleChange(e) {
     if (e.target.id === "teamName") {
-      console.log()
       const aplhaNum = /^[a-zA-Z0-9]+$/;
       if (e.target.value === "" || aplhaNum.test(e.target.value)) {
         setdataObj({ ...dataObj, [e.target.id]: e.target.value });
@@ -233,7 +230,6 @@ function Registration() {
     } else {
       setdataObj({ ...dataObj, [e.target.id]: e.target.value });
     }
-        console.log(dataObj);
     localStorage.setItem("dataObj", JSON.stringify(dataObj));
   }
 
